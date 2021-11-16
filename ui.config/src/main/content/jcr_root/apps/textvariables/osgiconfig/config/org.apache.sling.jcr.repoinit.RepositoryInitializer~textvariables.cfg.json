@@ -1,0 +1,10 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/textvariables",
+        "create path (nt:unstructured) /content/dam/textvariables/jcr:content",
+        "set properties on /content/dam/textvariables/jcr:content",
+        "set cq:conf{String} to /conf/textvariables",
+        "set jcr:title{String} to \"Text Variables\"",
+        "end"
+    ]
+}
