@@ -1,10 +1,13 @@
 package de.rockware.aem.core.impl.token.servlet.filter;
 
+import de.rockware.aem.core.api.caconfigs.TokenConfig;
 import de.rockware.aem.core.api.token.service.TokenService;
 import de.rockware.aem.core.impl.token.servlet.TokenResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.caconfig.ConfigurationBuilder;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -13,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Component(
-        configurationPid = "com.eon.aem.foundation.impl.token.filter.TokenServletFilter",
+        configurationPid = "de.rockware.aem.core.impl.token.servlet.filter.TokenServletFilter",
         service = { Filter.class },
         property = {
                 "sling.filter.scope=request",
@@ -34,16 +37,24 @@ public class TokenServletFilter implements Filter {
         if (tokenService.getFilterActive()) {
             if (request instanceof SlingHttpServletRequest && isValidContentType(response)) {
                 long startTime = System.currentTimeMillis();
-				String content = null;
-                if(wrapper.getResponseAsString()!=null){
-                	content	= wrapper.getResponseAsString();
+                SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+                Resource resource = slingRequest.getResource();
+                ConfigurationBuilder cBuilder = resource.adaptTo(ConfigurationBuilder.class);
+                if (cBuilder != null) {
+                    TokenConfig tConfig = cBuilder.as(TokenConfig.class);
+                    String content = null;
+                    if(wrapper.getResponseAsString() != null) {
+                        content	= wrapper.getResponseAsString();
+                    }
+                    String replacedContent = tokenService.replaceTokens(content, tConfig, resource);
+                    log.trace("Replaced content. New response: {}.", replacedContent);
+                    response.getWriter().write(replacedContent);
+                    response.getWriter().close();
+                    log.debug("Processing time: {} ms.", System.currentTimeMillis() - startTime);
+                } else {
+                    log.error("Configuration builder is null.");
+                    response.getOutputStream().write(wrapper.getResponseAsBytes());
                 }
-
-                String replacedContent = tokenService.replaceTokens(content, ((SlingHttpServletRequest) request).getResource().getPath());
-                log.trace("Replaced content. New response: {}.", replacedContent);
-                response.getWriter().write(replacedContent);
-                response.getWriter().close();
-                log.debug("Processing time: {} ms.", System.currentTimeMillis() - startTime);
             } else {
                 log.debug("Request is not a SlingHttpServletRequest or content type {} is not valid.", response.getContentType());
                 response.getOutputStream().write(wrapper.getResponseAsBytes());

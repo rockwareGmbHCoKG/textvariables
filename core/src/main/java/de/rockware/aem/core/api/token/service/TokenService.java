@@ -1,5 +1,8 @@
 package de.rockware.aem.core.api.token.service;
 
+import de.rockware.aem.core.api.caconfigs.TokenConfig;
+import org.apache.sling.api.resource.Resource;
+
 import java.util.List;
 import java.util.Map;
 
@@ -17,6 +20,16 @@ public interface TokenService {
      *          otherwise the replaced string is returned.
      */
     String replaceTokens(String originalText, String contentPath);
+
+    /**
+     * Replace all tokens in originalText that are defined for the given contentPath and return the result String.
+     * @param originalText  text with tokens
+     * @param tConfig   token config - This configuration holds the path to the variables and their values.
+     * @param resource  to get a valid resource resolver
+     * @return  if original text is empty, null, does not contain any (replacable) tokens, original text is returned,
+     *          otherwise the replaced string is returned.
+     */
+    String replaceTokens(String originalText, TokenConfig tConfig, Resource resource);
 
     /**
      * Returns a map with all tokens and values for a given content path.

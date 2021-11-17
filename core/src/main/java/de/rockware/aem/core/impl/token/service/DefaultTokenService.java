@@ -1,6 +1,7 @@
 package de.rockware.aem.core.impl.token.service;
 
 import com.day.crx.JcrConstants;
+import de.rockware.aem.core.api.caconfigs.TokenConfig;
 import de.rockware.aem.core.api.resource.ResourceHelper;
 import de.rockware.aem.core.api.token.service.TokenService;
 import de.rockware.aem.core.impl.token.TokenContainer;
@@ -48,6 +49,7 @@ public class DefaultTokenService implements TokenService {
     @Override
     public String replaceTokens(String originalText, String contentPath) {
         String returnText = originalText;
+
         // TODO: tokenpageproperty name no longer from OSGi.
         // TODO: instead -> read path to token config page from CaConfig
         if (StringUtils.isNotEmpty(configuration.getTokenPagePropertyName())) {
@@ -65,6 +67,17 @@ public class DefaultTokenService implements TokenService {
         } else {
             log.info("Cannot replace tokens. OSGi configuration for token service has no value.");
         }
+        return returnText;
+    }
+
+    @Override
+    public String replaceTokens(String originalText, TokenConfig tConfig, Resource resource) {
+        String returnText = originalText;
+        if (tConfig != null && StringUtils.isNotEmpty(tConfig.variablePath())) {
+            // TODO: get token map
+            // TODO: replace tokens
+        }
+
         return returnText;
     }
 
