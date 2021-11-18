@@ -1,4 +1,4 @@
-package de.rockware.aem.core.impl.token;
+package de.rockware.aem.token.impl;
 
 import java.util.Collections;
 import java.util.HashMap;

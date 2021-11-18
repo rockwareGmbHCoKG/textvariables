@@ -1,4 +1,4 @@
-package de.rockware.aem.core.api.caconfigs;
+package de.rockware.aem.token.api.caconfigs;
 
 import org.apache.sling.caconfig.annotation.Configuration;
 import org.apache.sling.caconfig.annotation.Property;

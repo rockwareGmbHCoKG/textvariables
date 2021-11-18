@@ -1,4 +1,4 @@
-package de.rockware.aem.core.impl.token.servlet;
+package de.rockware.aem.token.impl.servlet;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.WriteListener;

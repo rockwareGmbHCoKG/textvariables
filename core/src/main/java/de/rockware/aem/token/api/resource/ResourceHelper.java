@@ -1,4 +1,4 @@
-package de.rockware.aem.core.api.resource;
+package de.rockware.aem.token.api.resource;
 
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.ResourceResolver;

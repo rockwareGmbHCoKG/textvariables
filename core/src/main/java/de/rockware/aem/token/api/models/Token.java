@@ -1,4 +1,4 @@
-package de.rockware.aem.core.api.models;
+package de.rockware.aem.token.api.models;
 
 /**
  * A token has a key and a value.

@@ -1,4 +1,4 @@
-package de.rockware.aem.core.impl.token;
+package de.rockware.aem.token.impl;
 
 import com.day.crx.JcrConstants;
 import org.apache.commons.lang3.StringUtils;

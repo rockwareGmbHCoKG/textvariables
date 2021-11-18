@@ -1,6 +1,6 @@
-package de.rockware.aem.core.impl.models;
+package de.rockware.aem.token.impl.models;
 
-import de.rockware.aem.core.api.models.Token;
+import de.rockware.aem.token.api.models.Token;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.Default;

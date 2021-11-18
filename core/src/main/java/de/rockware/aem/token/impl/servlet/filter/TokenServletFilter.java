@@ -1,8 +1,8 @@
-package de.rockware.aem.core.impl.token.servlet.filter;
+package de.rockware.aem.token.impl.servlet.filter;
 
-import de.rockware.aem.core.api.caconfigs.TokenConfig;
-import de.rockware.aem.core.api.token.service.TokenService;
-import de.rockware.aem.core.impl.token.servlet.TokenResponseWrapper;
+import de.rockware.aem.token.api.caconfigs.TokenConfig;
+import de.rockware.aem.token.api.service.TokenService;
+import de.rockware.aem.token.impl.servlet.TokenResponseWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;

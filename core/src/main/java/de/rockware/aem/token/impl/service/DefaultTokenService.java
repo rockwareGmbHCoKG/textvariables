@@ -1,11 +1,11 @@
-package de.rockware.aem.core.impl.token.service;
+package de.rockware.aem.token.impl.service;
 
 import com.drew.lang.annotations.NotNull;
 
-import de.rockware.aem.core.api.caconfigs.TokenConfig;
-import de.rockware.aem.core.api.token.service.TokenService;
-import de.rockware.aem.core.impl.token.TokenContainer;
-import de.rockware.aem.core.impl.token.TokenUtils;
+import de.rockware.aem.token.api.caconfigs.TokenConfig;
+import de.rockware.aem.token.api.service.TokenService;
+import de.rockware.aem.token.impl.TokenContainer;
+import de.rockware.aem.token.impl.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.resource.Resource;

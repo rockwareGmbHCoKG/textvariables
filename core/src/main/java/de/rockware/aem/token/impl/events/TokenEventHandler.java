@@ -1,9 +1,9 @@
-package de.rockware.aem.core.impl.token.events;
+package de.rockware.aem.token.impl.events;
 
 import com.day.cq.wcm.api.PageEvent;
 import com.day.cq.wcm.api.PageModification;
 
-import de.rockware.aem.core.api.token.service.TokenService;
+import de.rockware.aem.token.api.service.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.JobManager;

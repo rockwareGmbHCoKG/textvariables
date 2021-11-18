@@ -23,7 +23,7 @@
     <parent>
         <groupId>de.rockware.aem</groupId>
         <artifactId>textvariables</artifactId>
-        <version>2.1.1-SNAPSHOT</version>
+        <version>2.2.3-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -60,16 +60,6 @@
                             <artifactId>textvariables.ui.apps.structure</artifactId>
                         </repositoryStructurePackage>
                     </repositoryStructurePackages>
-                    <dependencies>
-                        <dependency>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.content</artifactId>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.adobe.cq</groupId>
-                            <artifactId>core.wcm.components.config</artifactId>
-                        </dependency>
-                    </dependencies>
                 </configuration>
             </plugin>
             <plugin>

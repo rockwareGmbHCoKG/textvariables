@@ -1,4 +1,4 @@
-package de.rockware.aem.core.impl.token;
+package de.rockware.aem.token.impl;
 
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;

@@ -1,6 +1,6 @@
-package de.rockware.aem.core.api.token.service;
+package de.rockware.aem.token.api.service;
 
-import de.rockware.aem.core.api.caconfigs.TokenConfig;
+import de.rockware.aem.token.api.caconfigs.TokenConfig;
 import org.apache.sling.api.resource.Resource;
 
 import java.util.List;
