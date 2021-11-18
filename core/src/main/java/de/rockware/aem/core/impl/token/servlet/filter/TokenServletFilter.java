@@ -34,33 +34,28 @@ public class TokenServletFilter implements Filter {
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain filterChain) throws IOException, ServletException {
         TokenResponseWrapper wrapper = new TokenResponseWrapper((HttpServletResponse) response);
         filterChain.doFilter(request, wrapper);
-        if (tokenService.getFilterActive()) {
-            if (request instanceof SlingHttpServletRequest && isValidContentType(response)) {
-                long startTime = System.currentTimeMillis();
-                SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-                Resource resource = slingRequest.getResource();
-                ConfigurationBuilder cBuilder = resource.adaptTo(ConfigurationBuilder.class);
-                if (cBuilder != null) {
-                    TokenConfig tConfig = cBuilder.as(TokenConfig.class);
-                    String content = null;
-                    if(wrapper.getResponseAsString() != null) {
-                        content	= wrapper.getResponseAsString();
-                    }
-                    String replacedContent = tokenService.replaceTokens(content, tConfig, resource);
-                    log.trace("Replaced content. New response: {}.", replacedContent);
-                    response.getWriter().write(replacedContent);
-                    response.getWriter().close();
-                    log.debug("Processing time: {} ms.", System.currentTimeMillis() - startTime);
-                } else {
-                    log.error("Configuration builder is null.");
-                    response.getOutputStream().write(wrapper.getResponseAsBytes());
+        boolean touched = false;
+        if (request instanceof SlingHttpServletRequest && isValidContentType(response)) {
+            long startTime = System.currentTimeMillis();
+            SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+            Resource resource = slingRequest.getResource();
+            TokenConfig tConfig = getConfig(resource);
+            if (tConfig != null && tConfig.tokenReplacerActive()) {
+                String content = null;
+                if(wrapper.getResponseAsString() != null) {
+                    content	= wrapper.getResponseAsString();
                 }
-            } else {
-                log.debug("Request is not a SlingHttpServletRequest or content type {} is not valid.", response.getContentType());
-                response.getOutputStream().write(wrapper.getResponseAsBytes());
+                String replacedContent = tokenService.replaceTokens(content, tConfig, resource);
+                log.trace("Replaced content. New response: {}.", replacedContent);
+                response.getWriter().write(replacedContent);
+                response.getWriter().close();
+                touched = true;
+                log.debug("Processing time: {} ms.", System.currentTimeMillis() - startTime);
             }
         } else {
-            log.debug("Token filter is deactivated by config.");
+            log.debug("Request is not a SlingHttpServletRequest or content type {} is not valid.", response.getContentType());
+        }
+        if (!touched) {
             response.getOutputStream().write(wrapper.getResponseAsBytes());
         }
     }
@@ -94,5 +89,21 @@ public class TokenServletFilter implements Filter {
             log.trace("Content type {} is not valid. Return false.", contentType);
         }
         return returnValue;
+    }
+
+    /**
+     * Get the token configuration.
+     * @param resource  current resource
+     * @return  token config
+     */
+    private TokenConfig getConfig(Resource resource) {
+        TokenConfig tConfig = null;
+        if (resource != null) {
+            ConfigurationBuilder cBuilder = resource.adaptTo(ConfigurationBuilder.class);
+            if (cBuilder != null) {
+                tConfig = cBuilder.as(TokenConfig.class);
+            }
+        }
+        return tConfig;
     }
 }

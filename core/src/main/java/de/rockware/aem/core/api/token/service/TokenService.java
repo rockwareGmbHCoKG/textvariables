@@ -43,12 +43,6 @@ public interface TokenService {
     void flushMap(String path);
 
     /**
-     * Check if the servlet filter should operate on all text based files.
-     * @return  true or false
-     */
-    boolean getFilterActive();
-
-    /**
      * Get all the content types that the filter should process and scan for token keys.
      * @return      list with content types.
      */

@@ -1,5 +1,10 @@
 # Sample AEM project template
 
+TODO: Describe:
+* Service User
+* Example Configuration
+* Add dependency for CaConfig
+
 This is a project template for AEM-based applications. It is intended as a best-practice set of examples as well as a potential starting point to develop your own functionality.
 
 ## Modules
