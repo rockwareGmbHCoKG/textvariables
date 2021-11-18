@@ -1,5 +1,6 @@
 package de.rockware.aem.token.impl.servlet.filter;
 
+import com.day.cq.wcm.api.WCMMode;
 import de.rockware.aem.token.api.caconfigs.TokenConfig;
 import de.rockware.aem.token.api.service.TokenService;
 import de.rockware.aem.token.impl.servlet.TokenResponseWrapper;
@@ -35,7 +36,7 @@ public class TokenServletFilter implements Filter {
         TokenResponseWrapper wrapper = new TokenResponseWrapper((HttpServletResponse) response);
         filterChain.doFilter(request, wrapper);
         boolean touched = false;
-        if (request instanceof SlingHttpServletRequest && isValidContentType(response)) {
+        if (WCMMode.EDIT != WCMMode.fromRequest(request) && request instanceof SlingHttpServletRequest && isValidContentType(response)) {
             long startTime = System.currentTimeMillis();
             SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
             Resource resource = slingRequest.getResource();

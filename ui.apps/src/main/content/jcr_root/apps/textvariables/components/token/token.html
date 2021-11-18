@@ -2,6 +2,7 @@ Token creation
 <br>
 
 <sly data-sly-use.token="de.rockware.aem.token.api.models.Token"/>
+<div data-sly-test="${wcmmode.edit}">
 token key: ${token.tokenKey}<br>
-
 token value: ${token.tokenValue @context='html'}<br>
+</div>

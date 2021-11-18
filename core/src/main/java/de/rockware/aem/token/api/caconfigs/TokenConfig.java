@@ -17,10 +17,10 @@ public @interface TokenConfig {
     String[] tokenComponentResourceTypes() default {"textvariables/components/token", "textvariables/components/richToken"};
 
     @Property(label = "Property Name for Token Key", description = "Optional. Only needed if you created your own component.")
-    String tokenKeyPropertyName() default "key";
+    String tokenKeyPropertyName() default "tokenKey";
 
     @Property(label = "Property Name for Token Value", description = "Optional. Only needed if you created your own component.")
-    String tokenValuePropertyName() default "value";
+    String tokenValuePropertyName() default "tokenValue";
 
     @Property(label = "Replace Tokens?", description = "If set to false, variables will not be replaced.")
     boolean tokenReplacerActive() default false;

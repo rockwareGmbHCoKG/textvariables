@@ -14,6 +14,6 @@
  *  limitations under the License.
  */
 @Version("1.0")
-package de.rockware.aem.token.api.service;
+package de.rockware.aem.token.impl.models;
 
 import org.osgi.annotation.versioning.Version;
