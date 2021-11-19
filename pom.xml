@@ -21,7 +21,7 @@
     <groupId>de.rockware.aem</groupId>
     <artifactId>textvariables</artifactId>
     <packaging>pom</packaging>
-    <version>2.3.1-SNAPSHOT</version>
+    <version>2.4.0</version>
     <name>Text Variables</name>
     <description>Text Variables</description>
 
@@ -762,4 +762,20 @@ Bundle-DocURL:
         </dependencies>
     </dependencyManagement>
 
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>rockware-nexus-releases</id>
+            <name>Rockware Repository</name>
+            <url>https://repo.rockware.info/repository/rockware-release/</url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <uniqueVersion>true</uniqueVersion>
+            <id>rockware-nexus-snapshots</id>
+            <name>Rockware Snapshots</name>
+            <url>https://repo.rockware.info/repository/rockware-snapshots/</url>
+            <layout>default</layout>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
