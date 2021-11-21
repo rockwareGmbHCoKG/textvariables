@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Token"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/foundation/container">
+        <layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/foundation/layouts/tabs"/>
+        <items jcr:primaryType="nt:unstructured">
+            <tokenConfigs
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Token"
+                    sling:resourceType="granite/ui/components/foundation/section">
+                <layout
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/foundation/layouts/fixedcolumns"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <tokenName
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="XXXXXXXXXX Explain how to use XXXXX"
+                                    fieldLabel="Token Key"
+                                    name="./tokenKey"/>
+                            <tokenValue
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldDescription="Only plain text is allowed here."
+                                    fieldLabel="Token Value"
+                                    name="./tokenValue"/>
+                            <actions
+                                    granite:class="foundation-toggleable cmp-teaser__editor-multifield_actions"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                    composite="{Boolean}true">
+                                <field
+                                        granite:class="cmp-teaser__editor-action"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        name="./actions">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <key
+                                                granite:class="cmp-teaser__editor-actionField"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                emptyText="Key"
+                                                name="tokenKey"
+                                                required="{Boolean}true">
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                cmp-teaser-v1-dialog-edit-hook="tokenKey"/>
+                                        </key>
+                                        <value
+                                                granite:class="cmp-teaser__editor-actionField"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                emptyText="Value"
+                                                name="tokenValue"
+                                                required="{Boolean}true">
+                                            <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-teaser-v1-dialog-edit-hook="tokenValue"/>
+                                        </value>
+                                    </items>
+                                </field>
+                            </actions>
+                        </items>
+                    </column>
+                </items>
+            </tokenConfigs>
+        </items>
+    </content>
+</jcr:root>
