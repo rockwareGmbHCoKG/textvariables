@@ -1,0 +1,12 @@
+{
+  "token": {
+    "jcr:primaryType": "nt:unstructured",
+    "jcr:createdBy": "admin",
+    "jcr:lastModifiedBy": "admin",
+    "tokenKey": "testtoken1",
+    "jcr:created": "Thu Nov 18 2021 22:20:06 GMT+0100",
+    "tokenValue": "This is MY value, yeah!",
+    "jcr:lastModified": "Thu Nov 18 2021 22:28:39 GMT+0100",
+    "sling:resourceType": "textvariables/components/token"
+  }
+}

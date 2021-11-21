@@ -59,7 +59,11 @@ public class DefaultTokenService implements TokenService {
 
     @Override
     public Map<String, String> getTokenMap(String contentPath) {
-        return tokenMaps.get(contentPath).getTokenMap();
+        if (tokenMaps.containsKey(contentPath)) {
+            return tokenMaps.get(contentPath).getTokenMap();
+        } else {
+            return new HashMap<>();
+        }
     }
 
     @Override

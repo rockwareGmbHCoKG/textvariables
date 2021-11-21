@@ -23,39 +23,16 @@ public final class TokenUtils {
     }
 
     /**
-     * Iterate subresources to find resources that match one of the resourceTypes in the list.
-     * @param contentResource   Should represent a page or a jcr:content resource
-     * @param resourceTypes     list with resource types
-     * @return                  a list of resource found that match any of the given resource types
-     */
-    public static List<Resource> getTokenRootResources(Resource contentResource, List<String> resourceTypes) {
-        List<Resource> resources = new ArrayList<>();
-        Resource currentResource = contentResource;
-        if (null != currentResource && !currentResource.getPath().contains(JcrConstants.JCR_CONTENT)) {
-            currentResource = currentResource.getChild(JcrConstants.JCR_CONTENT);
-        }
-        if (null != currentResource) {
-            TokenResourceVisitor visitor = new TokenResourceVisitor(resourceTypes);
-            visitor.accept(currentResource);
-            resources =  visitor.getTokenRootResources();
-        } else {
-            log.info("Could not find a resource or content resource.");
-        }
-        return resources;
-    }
-
-    /**
      * Get page resource of current resource if possible. Should be either the resource itself or an ancestor.
      * @param oldPath   the old path
      * @return new path (remove jcr:content and more
      */
     public static String cleanPath(String oldPath) {
-        String path = oldPath;
+        String path = oldPath == null ? "" : oldPath;
         int idx = path.lastIndexOf("/jcr:content");
         if (idx >= 0) {
             path = path.substring(0, idx);
-        }
-        else {
+        } else {
             idx = path.indexOf("/jcr:frozenNode");
             if (idx >= 0) {
                 path = path.substring(0, idx);
