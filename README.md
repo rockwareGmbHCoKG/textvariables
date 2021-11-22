@@ -1,4 +1,7 @@
-# Sample AEM project template
+# ![Rockware](https://rockware.info/Default-small.png) 
+## Textvariables for AEM
+
+
 
 ## TODOs: 
 ###Describe
