@@ -8,7 +8,7 @@
     <parent>
         <groupId>de.rockware.aem</groupId>
         <artifactId>textvariables</artifactId>
-        <version>2.5.1-SNAPSHOT</version>
+        <version>2.5.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -46,10 +46,6 @@
 
                         <!-- Immutable context-aware configurations -->
                         <filter><root>/apps/settings</root></filter>
-
-                        <!-- DAM folder root, will be created via repoinit -->
-                        <filter><root>/content/dam/textvariables</root></filter>
-
                     </filters>
                 </configuration>
             </plugin>
