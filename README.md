@@ -18,9 +18,18 @@ what you need.
 - Both have two properties: _tokenKey_ (holds the key or variable) and _tokenValue_ (holds the value that will be inserted at render time).
 - Add a page to your content tree that will be used to store all the key / value pairs in. 
 - If all went well, a new *Context Aware Configuration* with name **Text Variable Token Config** will be available for your CaConfig page.
+- Open your CaConfig (or create a new one).
 - Create an instance of this new configuration.
-- 
+- If you are using the components from this bundle to enter token keys and values, leave token key and token value as they are.
+- Replace Tokens -> uncheck to have your tokens not replaced any more.
+- Resource Type for Component: no change if our components are used, otherwise enter values matching your own components.
+- Token Page Path: Select the page that holds your token keys and values.
+- Edit token keys and values.
+- Use token keys in your content. If your token key is _token1_, you need to write _${token1}_ in the content. Token keys are only replaced in preview mode or with WCM mode disabled.
+- Make sure you publish the page with the token keys after you did some changes there.
 
 ## Dependencies
+- [io.wcm.caconfig.editor.package-1.7.0.zip](https://mvnrepository.com/artifact/io.wcm/io.wcm.caconfig.editor.package)
+- [io.wcm.caconfig.extensions-1.7.0.jar](https://mvnrepository.com/artifact/io.wcm/io.wcm.caconfig.extensions)
 
 ## License

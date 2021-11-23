@@ -8,7 +8,7 @@ public @interface TokenConfig {
     /**
      * @return path to the page that has keys and values.
      */
-    @Property(label = "Variable Path", description = "This is the page with your variables.", property = {
+    @Property(label = "Token Page Path", description = "This is the page with your variables.", property = {
             "widgetType=pathbrowser",
             "pathbrowserRootPath=/content"})
     String variablePath() default "";
