@@ -142,7 +142,9 @@ Sling-Model-Packages: de.rockware.aem.token.api.models,de.rockware.aem.token.imp
                                         </rule>
                                     </rules>
                                     <excludes>
-                                        <!-- private enum; cannot test valueOf / values -->
+                                        <exclude>de/rockware/aem/token/api/caconfigs/*</exclude>
+                                        <exclude>de/rockware/aem/token/api/models/*</exclude>
+                                        <exclude>de/rockware/aem/token/api/service/*</exclude>
                                     </excludes>
                                 </configuration>
                             </execution>
