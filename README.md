@@ -2,7 +2,7 @@
 # Textvariables for AEM
 
 [![Build](https://github.com/rockwareGmbHCoKG/textvariables/workflows/Build/badge.svg?branch=develop)](https://github.com/rockwareGmbHCoKG/textvariables/actions?query=workflow%3ABuild+branch%3Adevelop)
-[![codecov](https://codecov.io/gh/rockwareGmbHCoKG/textvariables/branch/main/graph/badge.svg)](https://codecov.io/gh/lovepoem/codecov-travis-maven-junit5-example)
+[![codecov](https://codecov.io/gh/rockwareGmbHCoKG/textvariables/branch/main/graph/badge.svg)](https://codecov.io/gh/rockwareGmbHCoKG/textvariables)
 
 If your editors want to reuse smaller content parts like phone numbers, fees or even content blocks with rich text inside this package might be exactly
 what you need.
