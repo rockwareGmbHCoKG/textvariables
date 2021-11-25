@@ -33,3 +33,4 @@ what you need.
 - [io.wcm.caconfig.extensions-1.7.0.jar](https://mvnrepository.com/artifact/io.wcm/io.wcm.caconfig.extensions)
 
 ## License
+Apache 2
