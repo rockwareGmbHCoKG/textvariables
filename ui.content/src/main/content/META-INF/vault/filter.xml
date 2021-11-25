@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<workspaceFilter version="1.0">
-    <filter root="/conf/textvariables" mode="merge"/>
-    <filter root="/content/textvariables" mode="merge"/>
-    <filter root="/content/dam/textvariables/asset.jpg" mode="merge"/>
-    <filter root="/content/experience-fragments/textvariables" mode="merge"/>
-</workspaceFilter>

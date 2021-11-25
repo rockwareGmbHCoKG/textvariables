@@ -24,7 +24,7 @@
     <parent>
         <groupId>de.rockware.aem</groupId>
         <artifactId>textvariables</artifactId>
-        <version>2.4.0</version>
+        <version>2.6.2</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
@@ -65,13 +65,7 @@
                             <artifactId>textvariables.core</artifactId>
                             <target>/apps/textvariables-packages/application/install</target>
                         </embedded>
-                        <embedded>
-                            <groupId>de.rockware.aem</groupId>
-                            <artifactId>textvariables.ui.content</artifactId>
-                            <type>zip</type>
-                            <target>/apps/textvariables-packages/content/install</target>
-                        </embedded>
-                        <embedded>
+                       <embedded>
                             <groupId>de.rockware.aem</groupId>
                             <artifactId>textvariables.ui.config</artifactId>
                             <type>zip</type>
@@ -174,17 +168,10 @@
         </dependency>
         <dependency>
             <groupId>de.rockware.aem</groupId>
-            <artifactId>textvariables.ui.content</artifactId>
-            <version>${project.version}</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
-            <groupId>de.rockware.aem</groupId>
             <artifactId>textvariables.ui.config</artifactId>
             <version>${project.version}</version>
             <type>zip</type>
         </dependency>
-
         <dependency>
             <groupId>com.adobe.cq</groupId>
             <artifactId>core.wcm.components.content</artifactId>

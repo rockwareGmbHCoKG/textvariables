@@ -1,136 +1,35 @@
-# Sample AEM project template
+# ![Rockware](https://rockware.info/Default-small.png) 
+# Textvariables for AEM
 
-## TODOs: 
-###Describe
-* Service User
-* Example Configuration
-* Example usage
+If your editors want to reuse smaller content parts like phone numbers, fees or even content blocks with rich text inside this package might be exactly
+what you need.
 
-### Implement
-* Add dependency for CaConfig
-* Add support for multi value tokenkey / tokenvalue components
+## How to use it
 
-This is a project template for AEM-based applications. It is intended as a best-practice set of examples as well as a potential starting point to develop your own functionality.
+### Prerequisites
+- Download and install the latest release package (tested with AEM 6.5.9). 
+- Make sure [io.wcm.caconfig.editor.package-1.7.0.zip](https://mvnrepository.com/artifact/io.wcm/io.wcm.caconfig.editor.package) or a newer version is installed on your AEM server.
+- You will also need [io.wcm.caconfig.extensions-1.7.0.jar](https://mvnrepository.com/artifact/io.wcm/io.wcm.caconfig.extensions) or newer.
+- Last but not least: Make sure that you allow the template /apps/wcm-io/caconfig/editor-package/templates/editor in your content path to be used - or of course you can also use your own config template instead.
 
-## Modules
+### Step by Step
+- The project contains two components "textvariables/components/token" and "textvariables/components/richToken". You may use those components (preferably in a container) to edit token keys and values.
+- But of course you can create your own components as well.
+- Both have two properties: _tokenKey_ (holds the key or variable) and _tokenValue_ (holds the value that will be inserted at render time).
+- Add a page to your content tree that will be used to store all the key / value pairs in. 
+- If all went well, a new *Context Aware Configuration* with name **Text Variable Token Config** will be available for your CaConfig page.
+- Open your CaConfig (or create a new one).
+- Create an instance of this new configuration.
+- If you are using the components from this bundle to enter token keys and values, leave token key and token value as they are.
+- Replace Tokens -> uncheck to have your tokens not replaced any more.
+- Resource Type for Component: no change if our components are used, otherwise enter values matching your own components.
+- Token Page Path: Select the page that holds your token keys and values.
+- Edit token keys and values.
+- Use token keys in your content. If your token key is _token1_, you need to write _${token1}_ in the content. Token keys are only replaced in preview mode or with WCM mode disabled.
+- Make sure you publish the page with the token keys after you did some changes there.
 
-The main parts of the template are:
+## Dependencies
+- [io.wcm.caconfig.editor.package-1.7.0.zip](https://mvnrepository.com/artifact/io.wcm/io.wcm.caconfig.editor.package)
+- [io.wcm.caconfig.extensions-1.7.0.jar](https://mvnrepository.com/artifact/io.wcm/io.wcm.caconfig.extensions)
 
-* core: Java bundle containing all core functionality like OSGi services, listeners or schedulers, as well as component-related Java code such as servlets or request filters.
-* it.tests: Java based integration tests
-* ui.apps: contains the /apps (and /etc) parts of the project, ie JS&CSS clientlibs, components, and templates
-* ui.content: contains sample content using the components from the ui.apps
-* ui.config: contains runmode specific OSGi configs for the project
-* ui.frontend: an optional dedicated front-end build mechanism (Angular, React or general Webpack project)
-* ui.tests: Selenium based UI tests
-* all: a single content package that embeds all of the compiled modules (bundles and content packages) including any vendor dependencies
-* analyse: this module runs analysis on the project which provides additional validation for deploying into AEMaaCS
-
-## How to build
-
-To build all the modules run in the project root directory the following command with Maven 3:
-
-    mvn clean install
-
-To build all the modules and deploy the `all` package to a local instance of AEM, run in the project root directory the following command:
-
-    mvn clean install -PautoInstallSinglePackage
-
-Or to deploy it to a publish instance, run
-
-    mvn clean install -PautoInstallSinglePackagePublish
-
-Or alternatively
-
-    mvn clean install -PautoInstallSinglePackage -Daem.port=4503
-
-Or to deploy only the bundle to the author, run
-
-    mvn clean install -PautoInstallBundle
-
-Or to deploy only a single content package, run in the sub-module directory (i.e `ui.apps`)
-
-    mvn clean install -PautoInstallPackage
-
-## Testing
-
-There are three levels of testing contained in the project:
-
-### Unit tests
-
-This show-cases classic unit testing of the code contained in the bundle. To
-test, execute:
-
-    mvn clean test
-
-### Integration tests
-
-This allows running integration tests that exercise the capabilities of AEM via
-HTTP calls to its API. To run the integration tests, run:
-
-    mvn clean verify -Plocal
-
-Test classes must be saved in the `src/main/java` directory (or any of its
-subdirectories), and must be contained in files matching the pattern `*IT.java`.
-
-The configuration provides sensible defaults for a typical local installation of
-AEM. If you want to point the integration tests to different AEM author and
-publish instances, you can use the following system properties via Maven's `-D`
-flag.
-
-| Property | Description | Default value |
-| --- | --- | --- |
-| `it.author.url` | URL of the author instance | `http://localhost:4502` |
-| `it.author.user` | Admin user for the author instance | `admin` |
-| `it.author.password` | Password of the admin user for the author instance | `admin` |
-| `it.publish.url` | URL of the publish instance | `http://localhost:4503` |
-| `it.publish.user` | Admin user for the publish instance | `admin` |
-| `it.publish.password` | Password of the admin user for the publish instance | `admin` |
-
-The integration tests in this archetype use the [AEM Testing
-Clients](https://github.com/adobe/aem-testing-clients) and showcase some
-recommended [best
-practices](https://github.com/adobe/aem-testing-clients/wiki/Best-practices) to
-be put in use when writing integration tests for AEM.
-
-## Static Analysis
-
-The `analyse` module performs static analysis on the project for deploying into AEMaaCS. It is automatically
-run when executing
-
-    mvn clean install
-
-from the project root directory. Additional information about this analysis and how to further configure it
-can be found here https://github.com/adobe/aemanalyser-maven-plugin
-
-### UI tests
-
-They will test the UI layer of your AEM application using Selenium technology. 
-
-To run them locally:
-
-    mvn clean verify -Pui-tests-local-execution
-
-This default command requires:
-* an AEM author instance available at http://localhost:4502 (with the whole project built and deployed on it, see `How to build` section above)
-* Chrome browser installed at default location
-
-Check README file in `ui.tests` module for more details.
-
-## ClientLibs
-
-The frontend module is made available using an [AEM ClientLib](https://helpx.adobe.com/experience-manager/6-5/sites/developing/using/clientlibs.html). When executing the NPM build script, the app is built and the [`aem-clientlib-generator`](https://github.com/wcm-io-frontend/aem-clientlib-generator) package takes the resulting build output and transforms it into such a ClientLib.
-
-A ClientLib will consist of the following files and directories:
-
-- `css/`: CSS files which can be requested in the HTML
-- `css.txt` (tells AEM the order and names of files in `css/` so they can be merged)
-- `js/`: JavaScript files which can be requested in the HTML
-- `js.txt` (tells AEM the order and names of files in `js/` so they can be merged
-- `resources/`: Source maps, non-entrypoint code chunks (resulting from code splitting), static assets (e.g. icons), etc.
-
-## Maven settings
-
-The project comes with the auto-public repository configured. To setup the repository in your Maven settings, refer to:
-
-    http://helpx.adobe.com/experience-manager/kb/SetUpTheAdobeMavenRepository.html
+## License

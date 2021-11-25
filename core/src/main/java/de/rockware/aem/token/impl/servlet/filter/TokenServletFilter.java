@@ -34,27 +34,31 @@ public class TokenServletFilter implements Filter {
     @Override
     public void doFilter(final ServletRequest request, final ServletResponse response, final FilterChain filterChain) throws IOException, ServletException {
         TokenResponseWrapper wrapper = new TokenResponseWrapper((HttpServletResponse) response);
-        filterChain.doFilter(request, wrapper);
         boolean touched = false;
-        if (WCMMode.EDIT != WCMMode.fromRequest(request) && request instanceof SlingHttpServletRequest && isValidContentType(response)) {
-            long startTime = System.currentTimeMillis();
-            SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-            Resource resource = slingRequest.getResource();
-            TokenConfig tConfig = getConfig(resource);
-            if (tConfig != null && tConfig.tokenReplacerActive()) {
-                String content = null;
-                if(wrapper.getResponseAsString() != null) {
-                    content	= wrapper.getResponseAsString();
-                }
-                String replacedContent = tokenService.replaceTokens(content, tConfig, resource);
-                log.trace("Replaced content. New response: {}.", replacedContent);
-                response.getWriter().write(replacedContent);
-                response.getWriter().close();
-                touched = true;
-                log.debug("Processing time: {} ms.", System.currentTimeMillis() - startTime);
-            }
+        if (filterChain == null) {
+            log.error("Filterchain is null.");
         } else {
-            log.debug("Request is not a SlingHttpServletRequest or content type {} is not valid.", response.getContentType());
+            filterChain.doFilter(request, wrapper);
+            if (WCMMode.EDIT != WCMMode.fromRequest(request) && request instanceof SlingHttpServletRequest && isValidContentType(response)) {
+                long startTime = System.currentTimeMillis();
+                SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+                Resource resource = slingRequest.getResource();
+                TokenConfig tConfig = getConfig(resource);
+                if (tConfig != null && tConfig.tokenReplacerActive()) {
+                    String content = null;
+                    if (wrapper.getResponseAsString() != null) {
+                        content = wrapper.getResponseAsString();
+                    }
+                    String replacedContent = tokenService.replaceTokens(content, tConfig, resource);
+                    log.trace("Replaced content. New response: {}.", replacedContent);
+                    response.getWriter().write(replacedContent);
+                    response.getWriter().close();
+                    touched = true;
+                    log.debug("Processing time: {} ms.", System.currentTimeMillis() - startTime);
+                }
+            } else {
+                log.debug("Request is not a SlingHttpServletRequest or content type {} is not valid.", response.getContentType());
+            }
         }
         if (!touched) {
             response.getOutputStream().write(wrapper.getResponseAsBytes());

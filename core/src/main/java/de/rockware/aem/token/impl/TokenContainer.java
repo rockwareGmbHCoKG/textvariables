@@ -1,5 +1,7 @@
 package de.rockware.aem.token.impl;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +9,7 @@ import java.util.Map;
 /**
  * Tokens and values in a map.
  */
+@Slf4j
 public class TokenContainer {
 
     private Map<String, String> map = new HashMap<>();
@@ -26,7 +29,12 @@ public class TokenContainer {
      * @param map   new map
      */
     public void setTokens(Map<String, String> map) {
-        this.map = map;
+        if (map != null) {
+            this.map = map;
+        } else {
+            log.debug("Map is null, will be treated as if it was empty. ");
+            this.map = new HashMap<>();
+        }
     }
 
     /**

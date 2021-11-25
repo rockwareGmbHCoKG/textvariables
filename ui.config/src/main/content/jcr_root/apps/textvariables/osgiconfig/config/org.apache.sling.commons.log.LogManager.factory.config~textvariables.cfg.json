@@ -1,6 +1,6 @@
 {
   "org.apache.sling.commons.log.names": [
-    "de.rockware.aem"
+    "de.rockware.aem.token"
   ],
   "org.apache.sling.commons.log.level": "INFO",
   "org.apache.sling.commons.log.file": "logs/error.log",
