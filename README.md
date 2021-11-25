@@ -1,6 +1,8 @@
 # ![Rockware](https://rockware.info/Default-small.png) 
 # Textvariables for AEM
 
+[![codecov](https://codecov.io/gh/rockwareGmbHCoKG/textvariable/branch/main/graph/badge.svg)](https://codecov.io/gh/lovepoem/codecov-travis-maven-junit5-example)
+
 If your editors want to reuse smaller content parts like phone numbers, fees or even content blocks with rich text inside this package might be exactly
 what you need.
 
