@@ -398,6 +398,7 @@ Bundle-DocURL:
         <!-- ====================================================== -->
         <!-- A D O B E P U B L I C P R O F I L E -->
         <!-- ====================================================== -->
+        <!--
         <profile>
             <id>adobe-public</id>
 
@@ -441,19 +442,10 @@ Bundle-DocURL:
                 </pluginRepository>
             </pluginRepositories>
         </profile>
-
+        -->
         <!-- Development profile: install only the bundle -->
         <profile>
             <id>autoInstallBundle</id>
-            <!--
-                To enable this feature for a bundle, the sling-maven-plugin
-                (without configuration) needs to be included:
-
-                <plugin>
-                    <groupId>org.apache.sling</groupId>
-                    <artifactId>sling-maven-plugin</artifactId>
-                 </plugin>
-            -->
             <activation>
                 <activeByDefault>false</activeByDefault>
             </activation>
