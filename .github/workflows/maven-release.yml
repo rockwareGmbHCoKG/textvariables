@@ -31,7 +31,7 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'adopt'
-          server-id: rockware-nexus-release
+          server-id: rockware-nexus-releases
           server-username: NEXUS_USERNAME
           server-password: NEXUS_PASSWORD
 
