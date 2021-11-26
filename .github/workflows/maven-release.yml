@@ -1,17 +1,13 @@
 # Build validation
 
-name: Build
+name: Release
 
 on:
   push:
-    branches-ignore:
-      - develop
-    tags-ignore:
+    tags:
       - v*
   pull_request:
-    branches-ignore:
-      - develop
-    tags-ignore:
+    tags:
       - v*
   workflow_dispatch:
 
@@ -46,6 +42,8 @@ jobs:
 
       # Build & verify
       # TODO: deploy to Nexus
+      # TODO: create release + artifacts
+      # TODO: deploy to mvn central
       - name: Build and verify
         run: mvn -B -U clean verify
 
