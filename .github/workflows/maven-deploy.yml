@@ -57,7 +57,7 @@ jobs:
       - name: Build amd Deploy
         run: mvn -B -U clean install deploy
         env:
-          NEXUS_USERNAME: ${{secrets.NEXUS_USR}}
+          NEXUS_USERNAME: ${{secrets.NEXUS_USER}}
           NEXUS_PASSWORD: ${{secrets.NEXUS_PWD}}
 
       # Run code coverage check
