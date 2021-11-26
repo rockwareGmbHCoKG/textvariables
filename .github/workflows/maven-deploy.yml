@@ -1,16 +1,20 @@
 # Build validation
 
-name: Build
+name: Deploy
 
 on:
   push:
-    branches-ignore:
+    branches:
       - develop
+      - main
+      - release/**
     tags-ignore:
       - v*
   pull_request:
-    branches-ignore:
+    branches:
       - develop
+      - main
+      - release/**
     tags-ignore:
       - v*
   workflow_dispatch:
@@ -22,7 +26,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest ]
-        java: [8, 11]
+        java: [8]
 
     steps:
       # Check out Git repository
@@ -47,7 +51,7 @@ jobs:
       # Build & verify
       # TODO: deploy to Nexus
       - name: Build and verify
-        run: mvn -B -U clean verify
+        run: mvn -B -U clean deploy
 
       # Run code coverage check
       - name: Run code coverage check
