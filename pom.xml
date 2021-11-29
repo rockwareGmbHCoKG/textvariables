@@ -21,7 +21,7 @@
     <groupId>de.rockware.aem</groupId>
     <artifactId>textvariables</artifactId>
     <packaging>pom</packaging>
-    <version>2.10.1</version>
+    <version>2.11.1-SNAPSHOT</version>
     <name>Text Variables</name>
     <description>Text Variables</description>
 
