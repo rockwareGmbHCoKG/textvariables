@@ -40,10 +40,16 @@ class TokenServletFilterTest {
     }
 
     @Test
-    void init() {
+    void doFilterNull() throws IOException, ServletException {
+        TokenServletFilter filter = new TokenServletFilter();
+        filter.doFilter(ctx.request(), ctx.response(), null);
     }
 
     @Test
-    void destroy() {
+    void init() {
+        TokenServletFilter filter = new TokenServletFilter();
+        filter.init(null);
+        filter.destroy();
     }
+
 }
