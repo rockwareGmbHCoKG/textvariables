@@ -39,26 +39,7 @@ public class TokenServletFilter implements Filter {
             log.error("Filterchain is null.");
         } else {
             filterChain.doFilter(request, wrapper);
-            if (WCMMode.EDIT != WCMMode.fromRequest(request) && request instanceof SlingHttpServletRequest && isValidContentType(response)) {
-                long startTime = System.currentTimeMillis();
-                SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
-                Resource resource = slingRequest.getResource();
-                TokenConfig tConfig = getConfig(resource);
-                if (tConfig != null && tConfig.tokenReplacerActive()) {
-                    String content = null;
-                    if (wrapper.getResponseAsString() != null) {
-                        content = wrapper.getResponseAsString();
-                    }
-                    String replacedContent = tokenService.replaceTokens(content, tConfig, resource);
-                    log.trace("Replaced content. New response: {}.", replacedContent);
-                    response.getWriter().write(replacedContent);
-                    response.getWriter().close();
-                    touched = true;
-                    log.debug("Processing time: {} ms.", System.currentTimeMillis() - startTime);
-                }
-            } else {
-                log.debug("Request is not a SlingHttpServletRequest or content type {} is not valid.", response.getContentType());
-            }
+            touched = process(request, response, wrapper);
         }
         if (!touched) {
             response.getOutputStream().write(wrapper.getResponseAsBytes());
@@ -110,5 +91,38 @@ public class TokenServletFilter implements Filter {
             }
         }
         return tConfig;
+    }
+
+    /**
+     * Moved to separate method to better test this code.
+     * @param request   Current request
+     * @param response  current response
+     * @param wrapper   our token wrapper object
+     * @return  true, if we did some changes to the response object
+     * @throws IOException  could happen
+     */
+    protected boolean process(ServletRequest request, ServletResponse response, TokenResponseWrapper wrapper) throws IOException {
+        boolean touched = false;
+        if (WCMMode.EDIT != WCMMode.fromRequest(request) && request instanceof SlingHttpServletRequest && isValidContentType(response)) {
+            long startTime = System.currentTimeMillis();
+            SlingHttpServletRequest slingRequest = (SlingHttpServletRequest) request;
+            Resource resource = slingRequest.getResource();
+            TokenConfig tConfig = getConfig(resource);
+            if (tConfig != null && tConfig.tokenReplacerActive()) {
+                String content = null;
+                if (wrapper.getResponseAsString() != null) {
+                    content = wrapper.getResponseAsString();
+                }
+                String replacedContent = tokenService.replaceTokens(content, tConfig, resource);
+                log.trace("Replaced content. New response: {}.", replacedContent);
+                response.getWriter().write(replacedContent);
+                response.getWriter().close();
+                touched = true;
+                log.debug("Processing time: {} ms.", System.currentTimeMillis() - startTime);
+            }
+        } else {
+            log.debug("Request is not a SlingHttpServletRequest or content type {} is not valid.", response.getContentType());
+        }
+        return touched;
     }
 }
