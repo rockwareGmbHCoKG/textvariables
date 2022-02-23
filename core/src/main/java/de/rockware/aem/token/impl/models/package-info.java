@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-@Version("1.0.1")
+@Version("2.0.0")
 package de.rockware.aem.token.impl.models;
 
 import org.osgi.annotation.versioning.Version;

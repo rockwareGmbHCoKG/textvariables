@@ -23,26 +23,6 @@ public interface TokenService {
     String replaceTokens(String originalText, TokenConfig tConfig, Resource resource);
 
     /**
-     * Returns a map with all tokens and values for a given content path.
-     * @param contentPath   content path
-     * @return  map with tokens and values.
-     */
-    Map<String, String> getTokenMap(String contentPath);
-
-    /**
-     * Returns a list with all tokens for a given content path.
-     * @param contentPath   content path
-     * @return  list with tokens.
-     */
-    List<String> getTokenList(String contentPath);
-
-    /**
-     * Flush a certain token map that is covering the given path.
-     * @param path  path to flush
-     */
-    void flushMap(String path);
-
-    /**
      * Get all the content types that the filter should process and scan for token keys.
      * @return      list with content types.
      */
