@@ -41,31 +41,6 @@ class DefaultTokenServiceTest {
     }
 
     @Test
-    void getTokenMap() {
-        TokenService service = ctx.getService(TokenService.class);
-        ctx.currentResource("/content/experiencepage");
-        assertNotNull(service.getTokenMap("/"));
-        assertNotNull(service.getTokenMap(""));
-        assertNotNull(service.getTokenMap(null));
-    }
-
-    @Test
-    void getTokenList() {
-        TokenService service = ctx.getService(TokenService.class);
-        ctx.currentResource("/content/experiencepage");
-        assertNotNull(service.getTokenList("/"));
-        assertNotNull(service.getTokenList(""));
-        assertNotNull(service.getTokenList(null));
-    }
-
-    @Test
-    void flushMap() {
-        TokenService service = ctx.getService(TokenService.class);
-        ctx.currentResource("/content/experiencepage");
-        service.flushMap("/");
-    }
-
-    @Test
     void getContentTypes() {
         TokenService service = ctx.getService(TokenService.class);
         service.getContentTypes();
