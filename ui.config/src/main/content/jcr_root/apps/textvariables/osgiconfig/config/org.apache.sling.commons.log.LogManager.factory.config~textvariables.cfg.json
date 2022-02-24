@@ -3,6 +3,6 @@
     "de.rockware.aem.token"
   ],
   "org.apache.sling.commons.log.level": "INFO",
-  "org.apache.sling.commons.log.file": "logs/error.log",
+  "org.apache.sling.commons.log.file": "logs/token-error.log",
   "org.apache.sling.commons.log.additiv": "false"
 }
