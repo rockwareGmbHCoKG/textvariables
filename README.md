@@ -1,10 +1,10 @@
-# ![Rockware](https://rockware.info/Default-small.png) 
+# ![Rockware](https://rockware.de/wp-content/uploads/2022/09/Default-small.png) 
 # Textvariables for AEM
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/rockwareGmbHCoKG/textvariables)
-[![Build](https://github.com/rockwareGmbHCoKG/textvariables/workflows/Build/badge.svg?branch=develop)](https://github.com/rockwareGmbHCoKG/textvariables/actions?query=workflow%3ABuild+branch%3Adevelop)
+[![Build](https://github.com/rockwareGmbHCoKG/textvariables/workflows/Build/badge.svg)](https://github.com/rockwareGmbHCoKG/textvariables/actions?query=workflow%3ABuild+branch%3Adevelop)
 [![codecov](https://codecov.io/gh/rockwareGmbHCoKG/textvariables/branch/main/graph/badge.svg)](https://codecov.io/gh/rockwareGmbHCoKG/textvariables)
-[![CodeQL](https://github.com/rockwareGmbHCoKG/textvariables/workflows/CodeQL/badge.svg?branch=main)](https://github.com/rockwareGmbHCoKG/textvariables/actions?query=workflow%3ACodeQL)
+[![CodeQL](https://github.com/rockwareGmbHCoKG/textvariables/workflows/CodeQL/badge.svg)](https://github.com/rockwareGmbHCoKG/textvariables/actions?query=workflow%3ACodeQL)
 [![License](https://img.shields.io/github/license/rockwareGmbHCoKG/textvariables)](https://github.com/rockwareGmbHCoKG/textvariables/blob/main/LICENSE)
 
 If your editors want to reuse smaller content parts like phone numbers, fees or even content blocks with rich text inside this package might be exactly
