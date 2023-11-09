@@ -49,7 +49,8 @@ jobs:
       # TODO: create release + artifacts
       # TODO: deploy to mvn central
       - name: Build and deploy
-        run: mvn -B -U clean install deploy
+        # run: mvn -B -U clean install deploy - no deployment target available
+        run: mvn -B -U clean install
         env:
           NEXUS_USERNAME: ${{secrets.NEXUS_USER}}
           NEXUS_PASSWORD: ${{secrets.NEXUS_PWD}}
