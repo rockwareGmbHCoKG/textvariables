@@ -1,4 +1,4 @@
-# ![Rockware](https://rockware.info/Default-small.png) 
+# ![Rockware](https://rockware.de/wp-content/uploads/2022/09/Default-small.png) 
 # Textvariables for AEM
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/rockwareGmbHCoKG/textvariables)
