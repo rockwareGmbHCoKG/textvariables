@@ -8,7 +8,7 @@
     <parent>
         <groupId>de.rockware.aem</groupId>
         <artifactId>textvariables</artifactId>
-        <version>3.2.3</version>
+        <version>3.4.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 

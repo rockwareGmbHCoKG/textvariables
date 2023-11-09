@@ -47,7 +47,8 @@ jobs:
       # Build & verify
       # TODO: deploy to Nexus
       - name: Build amd Deploy
-        run: mvn -B -U clean install deploy
+        run: mvn -B -U clean install
+        # run: mvn -B -U clean install deploy - no nexus available
         env:
           NEXUS_USERNAME: ${{secrets.NEXUS_USER}}
           NEXUS_PASSWORD: ${{secrets.NEXUS_PWD}}
