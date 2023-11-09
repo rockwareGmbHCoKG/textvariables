@@ -42,7 +42,7 @@ public class TokenServletFilter implements Filter {
             touched = process(request, response, wrapper);
         }
         if (!touched) {
-            response.getOutputStream().write(wrapper.getResponseAsBytes());
+            response.getOutputStream().write(wrapper.getResponseAsUtf8Bytes());
         }
     }
 

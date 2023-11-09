@@ -1,5 +1,7 @@
 package de.rockware.aem.token.impl.servlet;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.servlet.ServletOutputStream;
 import javax.servlet.WriteListener;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +10,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 /**
  * Response Wrapper for our token replacer feature.
@@ -112,7 +116,28 @@ public class TokenResponseWrapper extends HttpServletResponseWrapper {
      * @throws IOException  if something goes wrong
      */
     public String getResponseAsString() throws IOException {
-        return new String(getResponseAsBytes(), getCharacterEncoding());
+        byte[] bytes = getResponseAsBytes();
+        if (Objects.isNull(bytes)) {
+            bytes = new byte[0];
+        }
+        String encoding = getCharacterEncoding();
+        if (StringUtils.isEmpty(encoding)) {
+            encoding = StandardCharsets.UTF_8.toString();
+        }
+        return new String(bytes, encoding);
+    }
+
+    /**
+     * Get response as Byte array encoded using UTF-8 charset.
+     * @return              byte array
+     * @throws IOException  if response cannot be extracted.
+     */
+    public byte[] getResponseAsUtf8Bytes() throws IOException {
+        String response = getResponseAsString();
+        if (StringUtils.isEmpty(response)) {
+            return new byte[0];
+        }
+        return response.getBytes(StandardCharsets.UTF_8);
     }
 
 }
